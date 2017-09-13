@@ -1,11 +1,10 @@
 package LucaodeIvoti.lib;
 
-//package br.com.institutoivoti.lib;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Conta {
-	private String nome;
+	private String titular;
 	private String agencia;
 	private String numero;
 	private int saldo;
@@ -17,7 +16,7 @@ public class Conta {
 	}
 
 	public String getTitular() {
-		return this.nome;
+		return this.titular;
 	}
 
 	public String getAgencia() {
@@ -49,7 +48,7 @@ public class Conta {
 	}
 
 	public String Titular(String nomeCidadao) {
-		return this.nome = nomeCidadao;
+		return this.titular = nomeCidadao;
 	}
 
 	public String Agencia(String nomeAgencia) {
@@ -81,20 +80,39 @@ public class Conta {
 	}
 	
 	public void ImprimeDados() {
-		Scanner scan = new Scanner(System.in);
-		System.out.println("nome do titular da conta: ");
-		nome = scan.next();
-		System.out.println("numero da conta: ");
-		numero = scan.next();
-		System.out.println("cpf do titular: ");
-		cpf = scan.next();
-		System.out.println("agencia: ");
-		agencia = scan.next();
-		System.out.println("nome: " +nome);
-		System.out.println("numero da conta: " +numero);
-		System.out.println("cpf: " +cpf);
-		System.out.println("agencia: " +agencia);
-		System.out.println("saldo: " +saldo);
+		System.out.println("nome: " + titular);
+		System.out.println("numero da conta: " + numero);
+		System.out.println("agencia: " + agencia);
+		System.out.println("saldo: " + saldo);
+	}
+	
+	public ArrayList<Conta> contas = new ArrayList<Conta>();
+	
+	public void AbreConta() {
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("Abertura de conta");						
+		
+		System.out.print("Nome: ");
+		titular = s.next();
+		
+		System.out.print("Agência: ");
+		numero = s.next();
+		
+		System.out.print("Número da conta: ");
+		agencia = s.next();
+		
+		this.contas.add(new Conta());		
+	}
+	
+	public void ImprimeContas() {
+		for(int i = 0; i < this.contas.size(); i++) {
+			this.contas.get(i).ImprimeDados();
+		}
+	}
+	
+	public Conta GetUltimaContaAberta() {
+		return this.contas.get(this.contas.size()-1);
 	}
 	
 }
